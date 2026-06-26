@@ -35,24 +35,31 @@ import {
   Code as CodeIcon,
 } from "lucide-react";
 
+const SITE_URL = "https://nishanlabs.tech";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PY Play — Python notebook in your browser" },
+      { title: "PY Play — Free Online Python Notebook | Run Python in Your Browser" },
       {
         name: "description",
         content:
-          "Run Python in your browser with a Colab-style notebook: text and code cells, autocomplete, auto-indent, AI fixes, and offline storage.",
+          "Free browser Python notebook by Nishan Labs. Code + text cells, AI autocomplete, packages, lessons, offline storage. No install or signup.",
       },
-      { property: "og:title", content: "PY Play — Python notebook in your browser" },
+      { property: "og:title", content: "PY Play — Free Online Python Notebook" },
       {
         property: "og:description",
-        content: "Notebook-style Python playground with AI suggestions and offline notebooks.",
+        content:
+          "Run Python in your browser. Notebook cells, AI suggestions, packages, offline storage.",
       },
+      { property: "og:url", content: SITE_URL + "/" },
+      { property: "og:image", content: SITE_URL + "/logo.png" },
     ],
+    links: [{ rel: "canonical", href: SITE_URL + "/" }],
   }),
   component: Index,
 });
+
 
 let executionCounter = 0;
 
