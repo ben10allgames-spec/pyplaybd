@@ -67,11 +67,7 @@ const createCell = (code = "", type: CellType = "code"): CellData => ({
   executionTime: null,
 });
 
-const DEFAULT_CELLS = (): CellData[] => [
-  createCell(
-    "# Welcome to PY Play 🐍\n# Press the play button or Shift+Enter to run\n\nprint(\"Hello, World!\")",
-  ),
-];
+const DEFAULT_CELLS = (): CellData[] => [createCell("")];
 
 function Index() {
   const { loading: pyLoading, error: pyError, runCode, installPackage, installingPackage, stop } =
@@ -309,6 +305,22 @@ function Index() {
   }, []);
 
   const allCode = cells.filter((c) => c.type === "code").map((c) => c.code).join("\n\n");
+
+  // Render only after client mount — Monaco + worker are browser-only.
+  if (!hydrated) {
+    return (
+      <div className="min-h-[100dvh] flex flex-col bg-background">
+        <Header />
+        <main className="flex-1 grid place-items-center">
+          <div className="flex flex-col items-center gap-3 text-muted-foreground">
+            <Loader2 className="h-6 w-6 animate-spin text-primary" />
+            <p className="text-sm font-mono">Loading notebook…</p>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-[100dvh] flex flex-col bg-background">
