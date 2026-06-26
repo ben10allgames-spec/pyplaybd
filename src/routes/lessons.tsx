@@ -193,6 +193,7 @@ function LessonsPage() {
               className="w-full rounded-lg border border-border bg-card pl-10 pr-3 py-2 text-sm focus:outline-none focus:border-primary"
             />
           </div>
+          <AdSlot slot="2222222222" className="my-2" />
           {filteredCategories.map((cat) => (
             <div key={cat.id} className="rounded-xl border border-border bg-card p-4">
               <h2 className="text-lg font-semibold mb-2">{cat.title}</h2>
