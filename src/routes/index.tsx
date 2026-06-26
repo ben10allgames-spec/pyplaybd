@@ -361,16 +361,16 @@ function Index() {
           <span className="hidden sm:inline">Stop</span>
         </Button>
 
-        <Button variant="outline" size="sm" onClick={() => handleAddCell("code")} className="gap-1 shrink-0 h-8 text-xs">
+        <Button variant="outline" size="sm" onClick={() => handleAddCell("code")} className="gap-1 shrink-0 h-8 text-xs" aria-label="Add code cell" title="Add code cell">
           <CodeIcon className="h-3.5 w-3.5" />
           <span className="hidden sm:inline">Code</span>
         </Button>
-        <Button variant="outline" size="sm" onClick={() => handleAddCell("markdown")} className="gap-1 shrink-0 h-8 text-xs">
+        <Button variant="outline" size="sm" onClick={() => handleAddCell("markdown")} className="gap-1 shrink-0 h-8 text-xs" aria-label="Add text cell" title="Add text cell">
           <Type className="h-3.5 w-3.5" />
           <span className="hidden sm:inline">Text</span>
         </Button>
 
-        <Button variant="outline" size="sm" onClick={handleClearAll} className="gap-1 shrink-0 h-8 text-xs">
+        <Button variant="outline" size="sm" onClick={handleClearAll} className="gap-1 shrink-0 h-8 text-xs" aria-label="Clear all cells" title="Clear all cells">
           <RotateCcw className="h-3.5 w-3.5" />
           <span className="hidden sm:inline">Clear</span>
         </Button>
@@ -380,10 +380,13 @@ function Index() {
           size="sm"
           onClick={() => setShowPackages(!showPackages)}
           className="gap-1 shrink-0 h-8 text-xs"
+          aria-label="Install Python packages"
+          title="Install Python packages"
         >
           <Package className="h-3.5 w-3.5" />
           <span className="hidden sm:inline">Packages</span>
         </Button>
+
 
         <ShareSaveDownload
           code={allCode}
