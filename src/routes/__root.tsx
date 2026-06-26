@@ -125,14 +125,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "WebApplication",
           name: "PY Play",
+          url: SITE_URL,
           applicationCategory: "DeveloperApplication",
           operatingSystem: "Any",
           description:
-            "Browser-based Python notebook with text + code cells, AI autocomplete, and offline storage.",
+            "Free browser-based Python notebook with code + text cells, AI autocomplete, lessons, and offline storage.",
+          image: OG_IMAGE,
+          author: {
+            "@type": "Person",
+            name: "Nishan Rahman",
+            url: "https://nishanrahman.me/",
+          },
+          publisher: { "@type": "Organization", name: "Nishan Labs", url: SITE_URL },
           offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
         }),
       },
     ];
+
     if (ADSENSE_CLIENT) {
       scripts.push({
         async: true,
