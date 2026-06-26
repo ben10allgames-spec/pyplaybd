@@ -20,11 +20,16 @@ const Header = ({ aiEnabled, onToggleAi }: HeaderProps) => {
       <img
         src="/logo.png"
         alt="PY Play — Python notebook in your browser"
+        width={224}
+        height={56}
+        fetchPriority="high"
+        decoding="async"
         className="h-12 sm:h-14 w-auto object-contain"
       />
       <span className="sr-only">PY Play — Python notebook in your browser</span>
     </Link>
   );
+
 
   return (
     <header className="flex items-center justify-between border-b border-border bg-card px-3 sm:px-6 py-2">
