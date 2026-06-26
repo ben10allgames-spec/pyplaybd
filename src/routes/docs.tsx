@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AdSlot from "@/components/AdSlot";
 
 export const Route = createFileRoute("/docs")({
   head: () => ({
