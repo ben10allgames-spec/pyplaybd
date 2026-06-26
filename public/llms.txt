@@ -1,0 +1,15 @@
+# PY Play
+
+> Free browser-based Python notebook by Nishan Labs. Run, learn, and share Python — code + text cells, AI autocomplete, packages, and offline storage. No install or signup.
+
+PY Play is a Colab-style notebook that runs entirely in your browser via Pyodide. It supports code and markdown cells, inline AI completions, package installation (numpy, pandas, matplotlib, scipy, requests and more), offline-first notebook storage, and one-click sharing/download as .py, .txt, or PDF.
+
+## Pages
+
+- [Notebook](/): Browser Python notebook with code + text cells, AI autocomplete, and offline storage.
+- [Python Lessons](/lessons): Step-by-step Python tutorials with runnable examples.
+- [Documentation](/docs): How to use PY Play — cells, shortcuts, packages, AI, sharing.
+
+## Optional
+
+- [Author — Nishan Rahman](https://nishanrahman.me/)

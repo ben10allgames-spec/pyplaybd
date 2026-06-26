@@ -35,24 +35,31 @@ import {
   Code as CodeIcon,
 } from "lucide-react";
 
+const SITE_URL = "https://nishanlabs.tech";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PY Play — Python notebook in your browser" },
+      { title: "PY Play — Free Online Python Notebook | Run Python in Your Browser" },
       {
         name: "description",
         content:
-          "Run Python in your browser with a Colab-style notebook: text and code cells, autocomplete, auto-indent, AI fixes, and offline storage.",
+          "Free browser Python notebook by Nishan Labs. Code + text cells, AI autocomplete, packages, lessons, offline storage. No install or signup.",
       },
-      { property: "og:title", content: "PY Play — Python notebook in your browser" },
+      { property: "og:title", content: "PY Play — Free Online Python Notebook" },
       {
         property: "og:description",
-        content: "Notebook-style Python playground with AI suggestions and offline notebooks.",
+        content:
+          "Run Python in your browser. Notebook cells, AI suggestions, packages, offline storage.",
       },
+      { property: "og:url", content: SITE_URL + "/" },
+      { property: "og:image", content: SITE_URL + "/logo.png" },
     ],
+    links: [{ rel: "canonical", href: SITE_URL + "/" }],
   }),
   component: Index,
 });
+
 
 let executionCounter = 0;
 
@@ -354,16 +361,16 @@ function Index() {
           <span className="hidden sm:inline">Stop</span>
         </Button>
 
-        <Button variant="outline" size="sm" onClick={() => handleAddCell("code")} className="gap-1 shrink-0 h-8 text-xs">
+        <Button variant="outline" size="sm" onClick={() => handleAddCell("code")} className="gap-1 shrink-0 h-8 text-xs" aria-label="Add code cell" title="Add code cell">
           <CodeIcon className="h-3.5 w-3.5" />
           <span className="hidden sm:inline">Code</span>
         </Button>
-        <Button variant="outline" size="sm" onClick={() => handleAddCell("markdown")} className="gap-1 shrink-0 h-8 text-xs">
+        <Button variant="outline" size="sm" onClick={() => handleAddCell("markdown")} className="gap-1 shrink-0 h-8 text-xs" aria-label="Add text cell" title="Add text cell">
           <Type className="h-3.5 w-3.5" />
           <span className="hidden sm:inline">Text</span>
         </Button>
 
-        <Button variant="outline" size="sm" onClick={handleClearAll} className="gap-1 shrink-0 h-8 text-xs">
+        <Button variant="outline" size="sm" onClick={handleClearAll} className="gap-1 shrink-0 h-8 text-xs" aria-label="Clear all cells" title="Clear all cells">
           <RotateCcw className="h-3.5 w-3.5" />
           <span className="hidden sm:inline">Clear</span>
         </Button>
@@ -373,10 +380,13 @@ function Index() {
           size="sm"
           onClick={() => setShowPackages(!showPackages)}
           className="gap-1 shrink-0 h-8 text-xs"
+          aria-label="Install Python packages"
+          title="Install Python packages"
         >
           <Package className="h-3.5 w-3.5" />
           <span className="hidden sm:inline">Packages</span>
         </Button>
+
 
         <ShareSaveDownload
           code={allCode}

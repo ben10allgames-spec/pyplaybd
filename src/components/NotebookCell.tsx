@@ -169,15 +169,15 @@ const NotebookCell = ({
             </Button>
             {!isMobile && (
               <>
-                <Button variant="ghost" size="sm" className="h-6 w-6 p-0" onClick={() => onMoveUp(cell.id)} disabled={index === 0}>
+                <Button variant="ghost" size="sm" className="h-6 w-6 p-0" onClick={() => onMoveUp(cell.id)} disabled={index === 0} aria-label="Move cell up" title="Move cell up">
                   <ChevronUp className="h-3 w-3" />
                 </Button>
-                <Button variant="ghost" size="sm" className="h-6 w-6 p-0" onClick={() => onMoveDown(cell.id)} disabled={index === totalCells - 1}>
+                <Button variant="ghost" size="sm" className="h-6 w-6 p-0" onClick={() => onMoveDown(cell.id)} disabled={index === totalCells - 1} aria-label="Move cell down" title="Move cell down">
                   <ChevronDown className="h-3 w-3" />
                 </Button>
               </>
             )}
-            <Button variant="ghost" size="sm" className="h-6 w-6 p-0" onClick={() => onAddBelow(cell.id, "code")}>
+            <Button variant="ghost" size="sm" className="h-6 w-6 p-0" onClick={() => onAddBelow(cell.id, "code")} aria-label="Add code cell below" title="Add code cell below">
               <Plus className="h-3 w-3" />
             </Button>
             <Button
@@ -186,9 +186,12 @@ const NotebookCell = ({
               className="h-6 w-6 p-0 text-destructive/60 hover:text-destructive"
               onClick={() => onDelete(cell.id)}
               disabled={totalCells <= 1}
+              aria-label="Delete cell"
+              title="Delete cell"
             >
               <Trash2 className="h-3 w-3" />
             </Button>
+
           </div>
         </div>
         {isEditing ? (
@@ -258,15 +261,15 @@ const NotebookCell = ({
         >
           {!isMobile && (
             <>
-              <Button variant="ghost" size="sm" className="h-6 w-6 p-0" onClick={() => onMoveUp(cell.id)} disabled={index === 0}>
+              <Button variant="ghost" size="sm" className="h-6 w-6 p-0" onClick={() => onMoveUp(cell.id)} disabled={index === 0} aria-label="Move cell up" title="Move cell up">
                 <ChevronUp className="h-3 w-3" />
               </Button>
-              <Button variant="ghost" size="sm" className="h-6 w-6 p-0" onClick={() => onMoveDown(cell.id)} disabled={index === totalCells - 1}>
+              <Button variant="ghost" size="sm" className="h-6 w-6 p-0" onClick={() => onMoveDown(cell.id)} disabled={index === totalCells - 1} aria-label="Move cell down" title="Move cell down">
                 <ChevronDown className="h-3 w-3" />
               </Button>
             </>
           )}
-          <Button variant="ghost" size="sm" className="h-6 w-6 p-0" onClick={() => onAddBelow(cell.id, "code")} title="Add code cell below">
+          <Button variant="ghost" size="sm" className="h-6 w-6 p-0" onClick={() => onAddBelow(cell.id, "code")} aria-label="Add code cell below" title="Add code cell below">
             <Plus className="h-3 w-3" />
           </Button>
           <Button
@@ -275,9 +278,12 @@ const NotebookCell = ({
             className="h-6 w-6 p-0 text-destructive/60 hover:text-destructive"
             onClick={() => onDelete(cell.id)}
             disabled={totalCells <= 1}
+            aria-label="Delete cell"
+            title="Delete cell"
           >
             <Trash2 className="h-3 w-3" />
           </Button>
+
         </div>
       </div>
 
