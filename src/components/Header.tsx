@@ -15,15 +15,13 @@ const Header = ({ aiEnabled, onToggleAi }: HeaderProps) => {
     }`;
 
   return (
-    <header className="flex items-center justify-between border-b border-border bg-card px-3 sm:px-6 py-2.5">
-      <Link to="/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
-        <img src="/favicon.png" alt="PY Play" className="h-8 w-8 rounded-lg" />
-        <div>
-          <h1 className="font-sans text-lg font-bold text-foreground leading-tight">PY Play</h1>
-          <p className="text-[10px] text-muted-foreground hidden sm:block">
-            Python notebook in your browser
-          </p>
-        </div>
+    <header className="flex items-center justify-between border-b border-border bg-card px-3 sm:px-6 py-2">
+      <Link to="/" className="flex items-center hover:opacity-80 transition-opacity" aria-label="PY Play home">
+        <img
+          src="/logo.png"
+          alt="PY Play — Python notebook in your browser"
+          className="h-12 sm:h-14 w-auto object-contain"
+        />
       </Link>
 
       <nav className="flex items-center gap-1 sm:gap-2">
