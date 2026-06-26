@@ -10,16 +10,97 @@ import AdSlot from "@/components/AdSlot";
 
 const searchSchema = z.object({ id: z.string().optional() });
 
+const SITE_URL = "https://nishanlabs.tech";
+
 export const Route = createFileRoute("/lessons")({
   validateSearch: searchSchema,
-  head: () => ({
-    meta: [
-      { title: "Lessons — PY Play" },
-      { name: "description", content: "Step-by-step Python lessons with runnable examples." },
-    ],
-  }),
+  loaderDeps: ({ search }) => ({ id: search.id }),
+  loader: ({ deps }) => {
+    const all = getAllLessons();
+    const found = deps.id ? all.find((l) => l.lesson.id === deps.id) : null;
+    return { lesson: found ?? null };
+  },
+  head: ({ loaderData }) => {
+    const lesson = loaderData?.lesson?.lesson;
+    if (lesson) {
+      const url = `${SITE_URL}/lessons?id=${encodeURIComponent(lesson.id)}`;
+      const title = `${lesson.title} — Python Lesson | PY Play`;
+      const description =
+        lesson.description ||
+        `Learn ${lesson.title} in Python with runnable examples on PY Play.`;
+      return {
+        meta: [
+          { title },
+          { name: "description", content: description },
+          { property: "og:title", content: title },
+          { property: "og:description", content: description },
+          { property: "og:type", content: "article" },
+          { property: "og:url", content: url },
+          { property: "og:image", content: SITE_URL + "/logo.png" },
+          { name: "twitter:title", content: title },
+          { name: "twitter:description", content: description },
+        ],
+        links: [{ rel: "canonical", href: url }],
+        scripts: [
+          {
+            type: "application/ld+json",
+            children: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LearningResource",
+              name: lesson.title,
+              description,
+              url,
+              learningResourceType: "Tutorial",
+              educationalLevel: "Beginner",
+              inLanguage: "en",
+              teaches: lesson.title,
+              image: SITE_URL + "/logo.png",
+              author: { "@type": "Person", name: "Nishan Rahman", url: "https://nishanrahman.me/" },
+              publisher: { "@type": "Organization", name: "Nishan Labs", url: SITE_URL },
+            }),
+          },
+        ],
+      };
+    }
+    const url = SITE_URL + "/lessons";
+    return {
+      meta: [
+        { title: "Python Lessons — Learn Python Online | PY Play" },
+        {
+          name: "description",
+          content:
+            "Free Python lessons with runnable examples — variables, functions, loops, OOP, files, and more. Practice in the browser with PY Play.",
+        },
+        { property: "og:title", content: "Python Lessons — Learn Python Online | PY Play" },
+        {
+          property: "og:description",
+          content: "Step-by-step Python tutorials with runnable examples in your browser.",
+        },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: url },
+        { property: "og:image", content: SITE_URL + "/logo.png" },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Python Lessons",
+            url,
+            description:
+              "Free, browser-based Python lessons covering syntax, data structures, functions, OOP, and more.",
+            inLanguage: "en",
+            isPartOf: { "@type": "WebSite", name: "PY Play", url: SITE_URL },
+          }),
+        },
+      ],
+    };
+  },
   component: LessonsPage,
 });
+
 
 function LessonsPage() {
   const navigate = useNavigate();
