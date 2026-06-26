@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, Play, Search, CheckCircle2, XCircle } from "
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AdSlot from "@/components/AdSlot";
 
 const searchSchema = z.object({ id: z.string().optional() });
 
