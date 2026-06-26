@@ -20,6 +20,8 @@ function DocsPage() {
       <main className="flex-1">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 py-8 space-y-6 prose-md">
           <h1>PY Play Docs</h1>
+          <AdSlot slot="3333333333" className="my-4" />
+
           <h2>Cells</h2>
           <p>Press <strong>+ Code</strong> to add a Python cell, <strong>+ Text</strong> for a markdown cell. Double-click a rendered text cell to edit it.</p>
           <h2>Running code</h2>
