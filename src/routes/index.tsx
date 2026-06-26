@@ -381,6 +381,8 @@ function Index() {
         <ShareSaveDownload
           code={allCode}
           fileName={`${title || "notebook"}.py`}
+          title={title}
+          cells={cells}
           onLoadCode={(code) => {
             const newCell = createCell(code);
             setCells([newCell]);
