@@ -7,10 +7,13 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { Toaster } from "sonner";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+
+const ADSENSE_CLIENT = import.meta.env.VITE_ADSENSE_CLIENT as string | undefined;
 
 function NotFoundComponent() {
   return (
@@ -73,26 +76,77 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
+  head: () => {
+    const meta: Array<Record<string, string>> = [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "PY Play — Run Python in your browser" },
+      {
+        name: "description",
+        content:
+          "PY Play is a free Colab-style Python notebook that runs entirely in your browser — text + code cells, autocomplete, auto-indent, AI suggestions, offline storage.",
+      },
+      { name: "author", content: "PY Play" },
+      {
+        name: "keywords",
+        content:
+          "Python, online Python, Python notebook, Pyodide, browser Python, Colab alternative, learn Python, code editor",
+      },
+      { property: "og:title", content: "PY Play — Run Python in your browser" },
+      {
+        property: "og:description",
+        content:
+          "Colab-style Python notebook in the browser. Code + text cells, AI autocomplete, offline storage.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-    ],
-    links: [
       {
-        rel: "stylesheet",
-        href: appCss,
+        name: "twitter:title",
+        content: "PY Play — Run Python in your browser",
       },
-    ],
-  }),
+      {
+        name: "twitter:description",
+        content:
+          "Colab-style Python notebook in the browser with AI autocomplete.",
+      },
+    ];
+    if (ADSENSE_CLIENT) {
+      meta.push({ name: "google-adsense-account", content: ADSENSE_CLIENT });
+    }
+
+    const scripts: Array<Record<string, unknown>> = [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          name: "PY Play",
+          applicationCategory: "DeveloperApplication",
+          operatingSystem: "Any",
+          description:
+            "Browser-based Python notebook with text + code cells, AI autocomplete, and offline storage.",
+          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        }),
+      },
+    ];
+    if (ADSENSE_CLIENT) {
+      scripts.push({
+        async: true,
+        src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`,
+        crossOrigin: "anonymous",
+      });
+    }
+
+    return {
+      meta,
+      links: [
+        { rel: "stylesheet", href: appCss },
+        { rel: "icon", type: "image/png", href: "/favicon.png" },
+        { rel: "apple-touch-icon", href: "/favicon.png" },
+      ],
+      scripts,
+    };
+  },
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
@@ -118,8 +172,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <Toaster richColors position="top-right" />
     </QueryClientProvider>
   );
 }
