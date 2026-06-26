@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pyplay2.lovable.app/sitemap.xml
