@@ -77,39 +77,43 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => {
+    const SITE_URL = "https://nishanlabs.tech";
+    const OG_IMAGE = `${SITE_URL}/logo.png`;
     const meta: Array<Record<string, string>> = [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PY Play — Run Python in your browser" },
+      { title: "PY Play — Free Online Python Notebook | Run Python in Your Browser" },
       {
         name: "description",
         content:
-          "PY Play is a free Colab-style Python notebook that runs entirely in your browser — text + code cells, autocomplete, auto-indent, AI suggestions, offline storage.",
+          "PY Play is a free online Python notebook by Nishan Labs. Write, run, and share Python code directly in your browser — no install, no signup. AI autocomplete, lessons, packages, and offline storage.",
       },
-      { name: "author", content: "PY Play" },
+      { name: "author", content: "Nishan Rahman" },
       {
         name: "keywords",
         content:
-          "Python, online Python, Python notebook, Pyodide, browser Python, Colab alternative, learn Python, code editor",
+          "online Python, Python notebook, run Python in browser, Pyodide, Colab alternative, Jupyter alternative, learn Python online, Python editor, Python playground, PY Play, Nishan Labs",
       },
-      { property: "og:title", content: "PY Play — Run Python in your browser" },
+      { name: "robots", content: "index, follow" },
+      { property: "og:site_name", content: "PY Play" },
+      { property: "og:title", content: "PY Play — Free Online Python Notebook" },
       {
         property: "og:description",
         content:
-          "Colab-style Python notebook in the browser. Code + text cells, AI autocomplete, offline storage.",
+          "Write, run, and share Python in your browser. AI autocomplete, lessons, packages, offline storage.",
       },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      {
-        name: "twitter:title",
-        content: "PY Play — Run Python in your browser",
-      },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:image", content: OG_IMAGE },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "PY Play — Free Online Python Notebook" },
       {
         name: "twitter:description",
-        content:
-          "Colab-style Python notebook in the browser with AI autocomplete.",
+        content: "Run Python in your browser with AI autocomplete and lessons.",
       },
+      { name: "twitter:image", content: OG_IMAGE },
     ];
+
     if (ADSENSE_CLIENT) {
       meta.push({ name: "google-adsense-account", content: ADSENSE_CLIENT });
     }
