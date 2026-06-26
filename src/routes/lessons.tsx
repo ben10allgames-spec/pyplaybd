@@ -89,6 +89,10 @@ function LessonsPage() {
               {lesson.theory}
             </div>
 
+            <AdSlot slot="1111111111" className="my-2" />
+
+
+
             {lesson.examples.map((ex, idx) => (
               <div key={idx} className="space-y-2">
                 <h3 className="text-lg font-semibold">{ex.title}</h3>
