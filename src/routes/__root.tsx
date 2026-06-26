@@ -154,7 +154,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       meta,
       links: [
         { rel: "stylesheet", href: appCss },
-        { rel: "canonical", href: SITE_URL + "/" },
         { rel: "icon", type: "image/png", href: "/favicon.png" },
         { rel: "apple-touch-icon", href: "/favicon.png" },
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -164,6 +163,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap",
         },
       ],
+
 
       scripts,
     };
