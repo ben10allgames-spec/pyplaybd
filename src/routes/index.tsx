@@ -67,11 +67,7 @@ const createCell = (code = "", type: CellType = "code"): CellData => ({
   executionTime: null,
 });
 
-const DEFAULT_CELLS = (): CellData[] => [
-  createCell(
-    "# Welcome to PY Play 🐍\n# Press the play button or Shift+Enter to run\n\nprint(\"Hello, World!\")",
-  ),
-];
+const DEFAULT_CELLS = (): CellData[] => [createCell("")];
 
 function Index() {
   const { loading: pyLoading, error: pyError, runCode, installPackage, installingPackage, stop } =
