@@ -14,15 +14,22 @@ const Header = ({ aiEnabled, onToggleAi }: HeaderProps) => {
       active ? "bg-primary/10 text-primary" : "text-muted-foreground hover:text-foreground"
     }`;
 
+  const isHome = pathname === "/";
+  const Brand = (
+    <Link to="/" className="flex items-center hover:opacity-80 transition-opacity" aria-label="PY Play — Python notebook in your browser, home">
+      <img
+        src="/logo.png"
+        alt="PY Play — Python notebook in your browser"
+        className="h-12 sm:h-14 w-auto object-contain"
+      />
+      <span className="sr-only">PY Play — Python notebook in your browser</span>
+    </Link>
+  );
+
   return (
     <header className="flex items-center justify-between border-b border-border bg-card px-3 sm:px-6 py-2">
-      <Link to="/" className="flex items-center hover:opacity-80 transition-opacity" aria-label="PY Play home">
-        <img
-          src="/logo.png"
-          alt="PY Play — Python notebook in your browser"
-          className="h-12 sm:h-14 w-auto object-contain"
-        />
-      </Link>
+      {isHome ? <h1 className="m-0 p-0 leading-none">{Brand}</h1> : Brand}
+
 
       <nav className="flex items-center gap-1 sm:gap-2">
         <Link to="/" className={linkCls(pathname === "/")}>
