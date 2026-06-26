@@ -176,7 +176,7 @@ function LessonsPage() {
 
             {lesson.examples.map((ex, idx) => (
               <div key={idx} className="space-y-2">
-                <h3 className="text-lg font-semibold">{ex.title}</h3>
+                <h2 className="text-lg font-semibold">{ex.title}</h2>
                 {ex.description && <p className="text-sm text-muted-foreground">{ex.description}</p>}
                 <div className="rounded-lg border border-border bg-card overflow-hidden">
                   <pre className="p-4 text-sm font-mono overflow-x-auto whitespace-pre-wrap">{ex.code}</pre>
