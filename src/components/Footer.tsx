@@ -11,7 +11,7 @@ const Footer = () => {
         >
           Nishan Rahman
         </a>
-        {' '}• PyPlayground © {new Date().getFullYear()}
+        {' '}• NishPy © {new Date().getFullYear()}
       </p>
     </footer>
   );

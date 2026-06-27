@@ -8,7 +8,7 @@ declare global {
 }
 
 const UNSUPPORTED_BROWSER_PACKAGES: Record<string, string> = {
-  streamlit: 'Streamlit is not supported in the browser Python runtime because it needs a server process and local system access. Use PY Play lessons/notebooks for code practice, or use browser-friendly packages like numpy, pandas, matplotlib, and scipy.',
+  streamlit: 'Streamlit is not supported in the browser Python runtime because it needs a server process and local system access. Use NishPy lessons/notebooks for code practice, or use browser-friendly packages like numpy, pandas, matplotlib, and scipy.',
   flask: 'Flask is a server-side web framework and cannot run inside the browser Python runtime.',
   django: 'Django is a server-side web framework and cannot run inside the browser Python runtime.',
   fastapi: 'FastAPI requires a backend server and is not supported in the browser Python runtime.',
@@ -40,7 +40,7 @@ const formatPackageInstallError = (packageName: string, errorMessage: string) =>
     lowerMessage.includes("can't find a pure python 3 wheel") ||
     lowerMessage.includes('not a valid wheel')
   ) {
-    return `Package "${packageName}" is not available for this browser-based Python runtime. PY Play supports Pyodide-compatible packages only.`;
+    return `Package "${packageName}" is not available for this browser-based Python runtime. NishPy supports Pyodide-compatible packages only.`;
   }
 
   return errorMessage;

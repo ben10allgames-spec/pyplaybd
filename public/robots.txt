@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nishanlabs.tech/sitemap.xml
+Sitemap: https://py.nishanlabs.tech/sitemap.xml

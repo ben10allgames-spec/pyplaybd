@@ -10,7 +10,7 @@ import AdSlot from "@/components/AdSlot";
 
 const searchSchema = z.object({ id: z.string().optional() });
 
-const SITE_URL = "https://nishanlabs.tech";
+const SITE_URL = "https://py.nishanlabs.tech";
 
 export const Route = createFileRoute("/lessons")({
   validateSearch: searchSchema,
@@ -24,10 +24,10 @@ export const Route = createFileRoute("/lessons")({
     const lesson = loaderData?.lesson?.lesson;
     if (lesson) {
       const url = `${SITE_URL}/lessons?id=${encodeURIComponent(lesson.id)}`;
-      const title = `${lesson.title} — Python Lesson | PY Play`;
+      const title = `${lesson.title} — Python Lesson | NishPy`;
       const description =
         lesson.description ||
-        `Learn ${lesson.title} in Python with runnable examples on PY Play.`;
+        `Learn ${lesson.title} in Python with runnable examples on NishPy.`;
       return {
         meta: [
           { title },
@@ -65,13 +65,13 @@ export const Route = createFileRoute("/lessons")({
     const url = SITE_URL + "/lessons";
     return {
       meta: [
-        { title: "Python Lessons — Learn Python Online | PY Play" },
+        { title: "Python Lessons — Learn Python Online | NishPy" },
         {
           name: "description",
           content:
-            "Free Python lessons with runnable examples — variables, functions, loops, OOP, files, and more. Practice in the browser with PY Play.",
+            "Free Python lessons with runnable examples — variables, functions, loops, OOP, files, and more. Practice in the browser with NishPy.",
         },
-        { property: "og:title", content: "Python Lessons — Learn Python Online | PY Play" },
+        { property: "og:title", content: "Python Lessons — Learn Python Online | NishPy" },
         {
           property: "og:description",
           content: "Step-by-step Python tutorials with runnable examples in your browser.",
@@ -92,7 +92,7 @@ export const Route = createFileRoute("/lessons")({
             description:
               "Free, browser-based Python lessons covering syntax, data structures, functions, OOP, and more.",
             inLanguage: "en",
-            isPartOf: { "@type": "WebSite", name: "PY Play", url: SITE_URL },
+            isPartOf: { "@type": "WebSite", name: "NishPy", url: SITE_URL },
           }),
         },
       ],
