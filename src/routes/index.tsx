@@ -35,18 +35,18 @@ import {
   Code as CodeIcon,
 } from "lucide-react";
 
-const SITE_URL = "https://nishanlabs.tech";
+const SITE_URL = "https://py.nishanlabs.tech";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PY Play — Free Online Python Notebook | Run Python in Your Browser" },
+      { title: "NishPy — Free Online Python Notebook | Run Python in Your Browser" },
       {
         name: "description",
         content:
           "Free browser Python notebook by Nishan Labs. Code + text cells, AI autocomplete, packages, lessons, offline storage. No install or signup.",
       },
-      { property: "og:title", content: "PY Play — Free Online Python Notebook" },
+      { property: "og:title", content: "NishPy — Free Online Python Notebook" },
       {
         property: "og:description",
         content:

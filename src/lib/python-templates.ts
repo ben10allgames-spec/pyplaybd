@@ -16,7 +16,7 @@ export const projectTemplates: ProjectTemplate[] = [
     difficulty: 'beginner',
     code: `# Hello World - Your first Python program!
 print("Hello, World! 🌍")
-print("Welcome to PyPlayground!")
+print("Welcome to NishPy!")
 
 name = "Coder"
 print(f"Happy coding, {name}!")

@@ -242,7 +242,7 @@ export const lessonCategories: LessonCategory[] = [
         id: 'user-input',
         title: 'Python User Input',
         description: 'Getting input from users',
-        theory: `The input() function lets you get user input. It always returns a string.\n\nTo use it as a number, you must convert:\n• int(input()) for integers\n• float(input()) for decimals\n\nIn PY Play, input() shows a browser prompt dialog.`,
+        theory: `The input() function lets you get user input. It always returns a string.\n\nTo use it as a number, you must convert:\n• int(input()) for integers\n• float(input()) for decimals\n\nIn NishPy, input() shows a browser prompt dialog.`,
         examples: [
           {
             title: 'Basic input',
@@ -669,7 +669,7 @@ export const lessonCategories: LessonCategory[] = [
         examples: [
           {
             title: 'Python to JSON',
-            code: 'import json\n\ndata = {\n    "name": "PY Play",\n    "version": "2.0",\n    "features": ["notebook", "lessons", "packages"]\n}\n\njson_str = json.dumps(data, indent=2)\nprint(json_str)',
+            code: 'import json\n\ndata = {\n    "name": "NishPy",\n    "version": "2.0",\n    "features": ["notebook", "lessons", "packages"]\n}\n\njson_str = json.dumps(data, indent=2)\nprint(json_str)',
           },
           {
             title: 'JSON to Python',

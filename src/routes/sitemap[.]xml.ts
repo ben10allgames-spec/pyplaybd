@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { getAllLessons } from "@/lib/lessons-data";
 
-const BASE_URL = "https://nishanlabs.tech";
+const BASE_URL = "https://py.nishanlabs.tech";
 
 interface SitemapEntry {
   path: string;

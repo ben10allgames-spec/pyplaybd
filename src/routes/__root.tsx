@@ -77,26 +77,26 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => {
-    const SITE_URL = "https://nishanlabs.tech";
+    const SITE_URL = "https://py.nishanlabs.tech";
     const OG_IMAGE = `${SITE_URL}/logo.png`;
     const meta: Array<Record<string, string>> = [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PY Play — Free Online Python Notebook | Run Python in Your Browser" },
+      { title: "NishPy — Free Online Python Notebook | Run Python in Your Browser" },
       {
         name: "description",
         content:
-          "PY Play is a free online Python notebook by Nishan Labs. Write, run, and share Python code directly in your browser — no install, no signup. AI autocomplete, lessons, packages, and offline storage.",
+          "NishPy is a free online Python notebook by Nishan Labs. Write, run, and share Python code directly in your browser — no install, no signup. AI autocomplete, lessons, packages, and offline storage.",
       },
       { name: "author", content: "Nishan Rahman" },
       {
         name: "keywords",
         content:
-          "online Python, Python notebook, run Python in browser, Pyodide, Colab alternative, Jupyter alternative, learn Python online, Python editor, Python playground, PY Play, Nishan Labs",
+          "online Python, Python notebook, run Python in browser, Pyodide, Colab alternative, Jupyter alternative, learn Python online, Python editor, Python playground, NishPy, Nishan Labs",
       },
       { name: "robots", content: "index, follow" },
-      { property: "og:site_name", content: "PY Play" },
-      { property: "og:title", content: "PY Play — Free Online Python Notebook" },
+      { property: "og:site_name", content: "NishPy" },
+      { property: "og:title", content: "NishPy — Free Online Python Notebook" },
       {
         property: "og:description",
         content:
@@ -106,7 +106,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:url", content: SITE_URL },
       { property: "og:image", content: OG_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "PY Play — Free Online Python Notebook" },
+      { name: "twitter:title", content: "NishPy — Free Online Python Notebook" },
       {
         name: "twitter:description",
         content: "Run Python in your browser with AI autocomplete and lessons.",
@@ -124,7 +124,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebApplication",
-          name: "PY Play",
+          name: "NishPy",
           url: SITE_URL,
           applicationCategory: "DeveloperApplication",
           operatingSystem: "Any",

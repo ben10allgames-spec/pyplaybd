@@ -3,31 +3,31 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AdSlot from "@/components/AdSlot";
 
-const SITE_URL = "https://nishanlabs.tech";
+const SITE_URL = "https://py.nishanlabs.tech";
 const DOCS_URL = SITE_URL + "/docs";
 
 export const Route = createFileRoute("/docs")({
   head: () => ({
     meta: [
-      { title: "PY Play Documentation — How to Use the Python Notebook" },
+      { title: "NishPy Documentation — How to Use the Python Notebook" },
       {
         name: "description",
         content:
-          "Learn how to use PY Play: cells, keyboard shortcuts, installing Python packages, AI autocomplete, sharing notebooks, and offline storage.",
+          "Learn how to use NishPy: cells, keyboard shortcuts, installing Python packages, AI autocomplete, sharing notebooks, and offline storage.",
       },
-      { property: "og:title", content: "PY Play Documentation — How to Use the Python Notebook" },
+      { property: "og:title", content: "NishPy Documentation — How to Use the Python Notebook" },
       {
         property: "og:description",
         content:
-          "Docs for PY Play: cells, shortcuts, packages, AI autocomplete, sharing, and offline notebooks.",
+          "Docs for NishPy: cells, shortcuts, packages, AI autocomplete, sharing, and offline notebooks.",
       },
       { property: "og:type", content: "article" },
       { property: "og:url", content: DOCS_URL },
       { property: "og:image", content: SITE_URL + "/logo.png" },
-      { name: "twitter:title", content: "PY Play Documentation" },
+      { name: "twitter:title", content: "NishPy Documentation" },
       {
         name: "twitter:description",
-        content: "How to use the PY Play Python notebook in your browser.",
+        content: "How to use the NishPy Python notebook in your browser.",
       },
     ],
     links: [{ rel: "canonical", href: DOCS_URL }],
@@ -37,9 +37,9 @@ export const Route = createFileRoute("/docs")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "TechArticle",
-          headline: "PY Play Documentation",
+          headline: "NishPy Documentation",
           description:
-            "How to use PY Play — cells, shortcuts, packages, AI autocomplete, and offline notebooks.",
+            "How to use NishPy — cells, shortcuts, packages, AI autocomplete, and offline notebooks.",
           url: DOCS_URL,
           image: SITE_URL + "/logo.png",
           author: { "@type": "Person", name: "Nishan Rahman", url: "https://nishanrahman.me/" },
@@ -59,9 +59,9 @@ function DocsPage() {
       <Header />
       <main className="flex-1">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 py-8 space-y-6 prose-md">
-          <h1>PY Play Documentation</h1>
+          <h1>NishPy Documentation</h1>
           <p className="text-muted-foreground">
-            Everything you need to use PY Play — a free browser-based Python notebook.
+            Everything you need to use NishPy — a free browser-based Python notebook.
           </p>
           <AdSlot slot="3333333333" className="my-4" />
 
@@ -93,7 +93,7 @@ function DocsPage() {
 
           <h2 id="packages">Installing &amp; importing Python packages</h2>
           <p>
-            PY Play runs Python in your browser through Pyodide, so you can install most pure-Python
+            NishPy runs Python in your browser through Pyodide, so you can install most pure-Python
             packages and the major scientific stack <em>without leaving the page</em>.
           </p>
           <h3>Using the Packages panel</h3>

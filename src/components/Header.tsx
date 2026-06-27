@@ -16,17 +16,17 @@ const Header = ({ aiEnabled, onToggleAi }: HeaderProps) => {
 
   const isHome = pathname === "/";
   const Brand = (
-    <Link to="/" className="flex items-center hover:opacity-80 transition-opacity" aria-label="PY Play — Python notebook in your browser, home">
+    <Link to="/" className="flex items-center hover:opacity-80 transition-opacity" aria-label="NishPy — Python notebook in your browser, home">
       <img
         src="/logo.png"
-        alt="PY Play — Python notebook in your browser"
+        alt="NishPy — Python notebook in your browser"
         width={224}
         height={56}
         fetchPriority="high"
         decoding="async"
         className="h-12 sm:h-14 w-auto object-contain"
       />
-      <span className="sr-only">PY Play — Python notebook in your browser</span>
+      <span className="sr-only">NishPy — Python notebook in your browser</span>
     </Link>
   );
 
