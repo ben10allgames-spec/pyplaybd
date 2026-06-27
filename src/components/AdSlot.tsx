@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouterState } from "@tanstack/react-router";
 
 const ADSENSE_CLIENT = (import.meta.env.VITE_ADSENSE_CLIENT as string | undefined) ?? "ca-pub-3332518473430238";
@@ -28,6 +28,8 @@ export default function AdSlot({
 }: AdSlotProps) {
   const ref = useRef<HTMLModElement | null>(null);
   const pushed = useRef(false);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
@@ -58,6 +60,7 @@ export default function AdSlot({
     return null;
   }
 
+  if (!mounted) return null;
   return (
     <ins
       ref={ref}
