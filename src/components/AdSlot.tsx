@@ -60,6 +60,7 @@ export default function AdSlot({
     return null;
   }
 
+  if (!mounted) return null;
   return (
     <ins
       ref={ref}
