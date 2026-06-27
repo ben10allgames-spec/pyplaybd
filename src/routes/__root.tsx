@@ -112,6 +112,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "Run Python in your browser with AI autocomplete and lessons.",
       },
       { name: "twitter:image", content: OG_IMAGE },
+      // Google Search Console verification tokens (NishPy)
+      { name: "google-site-verification", content: "09BWnF2Z_Pc5rjeJMg0EtGKLkGiyCKF_I3wFIGx26qo" },
+      { name: "google-site-verification", content: "5v1Pwc_agN4AtQ0OZphLGqxHqvaPf9Gy98vKwY1Zf5M" },
     ];
 
     if (ADSENSE_CLIENT) {
