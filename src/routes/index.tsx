@@ -63,6 +63,22 @@ export const Route = createFileRoute("/")({
 
 let executionCounter = 0;
 
+const INPUT_CALL_PATTERN = /(?<![\w.])input\s*\((?:\s*(["'])(.*?)\1\s*)?\)/gs;
+
+const prepareCodeForRun = (code: string) => {
+  if (typeof window === "undefined") return code;
+  let cancelled = false;
+  const prepared = code.replace(INPUT_CALL_PATTERN, (_match, _quote: string | undefined, promptText: string | undefined) => {
+    const answer = window.prompt(promptText || "Enter input:");
+    if (answer === null) {
+      cancelled = true;
+      return "''";
+    }
+    return JSON.stringify(answer);
+  });
+  return cancelled ? null : prepared;
+};
+
 const createCell = (code = "", type: CellType = "code"): CellData => ({
   id: "cell_" + Math.random().toString(36).slice(2, 10),
   type,
@@ -156,7 +172,8 @@ function Index() {
       if (pyLoading) return;
       const cell = cellsRef.current.find((c) => c.id === id);
       if (!cell || cell.type !== "code" || !cell.code.trim()) return;
-      const code = cell.code;
+      const code = prepareCodeForRun(cell.code);
+      if (code === null) return;
       setCells((prev) => prev.map((c) => (c.id === id ? { ...c, isRunning: true, output: "", error: null } : c)));
       const startTime = performance.now();
       const result = await runCode(code);
