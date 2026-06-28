@@ -109,8 +109,11 @@ export const fixCode = createServerFn({ method: "POST" })
     const raw: string = result.data?.choices?.[0]?.message?.content ?? "{}";
     try {
       const parsed = JSON.parse(extractJson(raw));
+      if (typeof parsed.fixedCode !== "string" || !parsed.fixedCode.trim()) {
+        return fallback ?? { fixedCode: null, explanation: null, error: "AI could not produce a code fix. Try changing the code or run it again." };
+      }
       return {
-        fixedCode: typeof parsed.fixedCode === "string" ? parsed.fixedCode : null,
+        fixedCode: parsed.fixedCode,
         explanation: typeof parsed.explanation === "string" ? parsed.explanation : null,
         error: null as string | null,
       };

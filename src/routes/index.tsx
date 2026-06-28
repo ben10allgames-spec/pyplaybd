@@ -160,7 +160,21 @@ function Index() {
 
   // ===== Mutations =====
   const handleCodeChange = useCallback((id: string, code: string) => {
-    setCells((prev) => prev.map((c) => (c.id === id ? { ...c, code } : c)));
+    setCells((prev) =>
+      prev.map((c) =>
+        c.id === id
+          ? {
+              ...c,
+              code,
+              output: "",
+              error: null,
+              isRunning: false,
+              executionCount: null,
+              executionTime: null,
+            }
+          : c,
+      ),
+    );
   }, []);
 
   const handleSetEditing = useCallback((id: string, editing: boolean) => {
