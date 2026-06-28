@@ -6,6 +6,7 @@ export function useAIFix() {
   const [fixing, setFixing] = useState(false);
   const [fixedCode, setFixedCode] = useState<string | null>(null);
   const [explanation, setExplanation] = useState<string | null>(null);
+  const [fixError, setFixError] = useState<string | null>(null);
   const fixCodeFn = useServerFn(fixCode);
 
   const getAIFix = useCallback(
@@ -13,6 +14,7 @@ export function useAIFix() {
       setFixing(true);
       setFixedCode(null);
       setExplanation(null);
+      setFixError(null);
       try {
         const data = await fixCodeFn({ data: { code, error } });
         if (data.error) throw new Error(data.error);
@@ -21,6 +23,7 @@ export function useAIFix() {
         return data.fixedCode;
       } catch (err) {
         console.error("AI fix error:", err);
+        setFixError(err instanceof Error ? err.message : "AI fix is unavailable right now.");
         return null;
       } finally {
         setFixing(false);
@@ -32,7 +35,8 @@ export function useAIFix() {
   const clearFix = useCallback(() => {
     setFixedCode(null);
     setExplanation(null);
+    setFixError(null);
   }, []);
 
-  return { fixing, fixedCode, explanation, getAIFix, clearFix };
+  return { fixing, fixedCode, explanation, fixError, getAIFix, clearFix };
 }

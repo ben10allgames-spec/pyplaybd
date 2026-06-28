@@ -95,6 +95,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "online Python, Python notebook, run Python in browser, Pyodide, Colab alternative, Jupyter alternative, learn Python online, Python editor, Python playground, NishPy, Nishan Labs",
       },
       { name: "robots", content: "index, follow" },
+      { name: "google-adsense-account", content: "ca-pub-3332518473430238" },
       { property: "og:site_name", content: "NishPy" },
       { property: "og:title", content: "NishPy — Free Online Python Notebook" },
       {
@@ -116,10 +117,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "google-site-verification", content: "09BWnF2Z_Pc5rjeJMg0EtGKLkGiyCKF_I3wFIGx26qo" },
       { name: "google-site-verification", content: "5v1Pwc_agN4AtQ0OZphLGqxHqvaPf9Gy98vKwY1Zf5M" },
     ];
-
-    if (ADSENSE_CLIENT) {
-      meta.push({ name: "google-adsense-account", content: ADSENSE_CLIENT });
-    }
 
     const scripts: Array<Record<string, unknown>> = [
       {

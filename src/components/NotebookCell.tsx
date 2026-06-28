@@ -78,7 +78,7 @@ const NotebookCell = ({
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const decorationsRef = useRef<editor.IEditorDecorationsCollection | null>(null);
   const isMobile = useIsMobile();
-  const { fixing, fixedCode, explanation, getAIFix, clearFix } = useAIFix();
+  const { fixing, fixedCode, explanation, fixError, getAIFix, clearFix } = useAIFix();
   const [showFullTrace, setShowFullTrace] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -351,6 +351,10 @@ const NotebookCell = ({
                   {fixing ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Wand2 className="h-3.5 w-3.5" />}
                   {fixing ? "AI is fixing…" : "✨ Fix with AI"}
                 </Button>
+              )}
+
+              {fixError && (
+                <p className="text-[11px] text-destructive/90">{fixError}</p>
               )}
 
               {fixedCode && (

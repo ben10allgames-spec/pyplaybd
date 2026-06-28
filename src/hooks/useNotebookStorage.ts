@@ -12,6 +12,20 @@ export type StoredNotebook = {
 const NB_PREFIX = "pyplay:nb:";
 const ACTIVE_KEY = "pyplay:active";
 
+function cleanNotebook(nb: StoredNotebook): StoredNotebook {
+  return {
+    ...nb,
+    cells: nb.cells.map((cell) => ({
+      ...cell,
+      output: "",
+      error: null,
+      isRunning: false,
+      executionCount: null,
+      executionTime: null,
+    })),
+  };
+}
+
 export async function listNotebooks(): Promise<StoredNotebook[]> {
   const allKeys = (await keys()) as string[];
   const nbKeys = allKeys.filter((k) => typeof k === "string" && k.startsWith(NB_PREFIX));
@@ -20,6 +34,7 @@ export async function listNotebooks(): Promise<StoredNotebook[]> {
   );
   return items
     .filter((x): x is StoredNotebook => !!x)
+    .map(cleanNotebook)
     .sort((a, b) => b.updatedAt - a.updatedAt);
 }
 
@@ -28,11 +43,12 @@ export async function deleteNotebook(id: string) {
 }
 
 export async function saveNotebook(nb: StoredNotebook) {
-  await set(NB_PREFIX + nb.id, nb);
+  await set(NB_PREFIX + nb.id, cleanNotebook(nb));
 }
 
 export async function loadNotebook(id: string): Promise<StoredNotebook | undefined> {
-  return (await get(NB_PREFIX + id)) as StoredNotebook | undefined;
+  const nb = (await get(NB_PREFIX + id)) as StoredNotebook | undefined;
+  return nb ? cleanNotebook(nb) : undefined;
 }
 
 export async function getActiveId(): Promise<string | undefined> {

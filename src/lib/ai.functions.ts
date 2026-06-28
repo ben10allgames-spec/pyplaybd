@@ -28,6 +28,33 @@ async function callAI(body: object) {
   return { ok: true as const, data };
 }
 
+function extractJson(raw: string) {
+  const cleaned = raw.trim().replace(/^```(?:json)?\n?/i, "").replace(/```\s*$/i, "");
+  const match = cleaned.match(/\{[\s\S]*\}/);
+  return match ? match[0] : cleaned;
+}
+
+function localFix(code: string, error: string) {
+  if (/input\(\) is not supported|EOFError/i.test(error)) {
+    return {
+      fixedCode: code.replace(/(?<![\w.])input\s*\((?:\s*(["'])(.*?)\1\s*)?\)/gs, '"sample value"'),
+      explanation: "NishPy now prompts for input before running. If this came from an older run, run the cell again; otherwise replace the sample value with the input you want.",
+      error: null as string | null,
+    };
+  }
+
+  if (/NameError: name '([^']+)' is not defined/i.test(error)) {
+    const missing = error.match(/NameError: name '([^']+)' is not defined/i)?.[1] ?? "value";
+    return {
+      fixedCode: `${missing} = None\n${code}`,
+      explanation: `Defined ${missing} before it is used. Replace None with the value you need.`,
+      error: null as string | null,
+    };
+  }
+
+  return null;
+}
+
 export const suggestCode = createServerFn({ method: "POST" })
   .inputValidator(
     z.object({
@@ -64,6 +91,7 @@ export const fixCode = createServerFn({ method: "POST" })
     }),
   )
   .handler(async ({ data }) => {
+    const fallback = localFix(data.code, data.error);
     const system =
       'You are an expert Python tutor. Given broken code and its error, return STRICT JSON: {"fixedCode": "...", "explanation": "short reason"}. Output ONLY JSON, no markdown.';
     const user = `CODE:\n${data.code}\n\nERROR:\n${data.error}`;
@@ -74,19 +102,22 @@ export const fixCode = createServerFn({ method: "POST" })
         { role: "user", content: user },
       ],
       temperature: 0.2,
-      max_tokens: 1200,
+      max_tokens: 2000,
       response_format: { type: "json_object" },
     });
-    if (!result.ok) return { fixedCode: null, explanation: null, error: result.error };
+    if (!result.ok) return fallback ?? { fixedCode: null, explanation: null, error: result.error };
     const raw: string = result.data?.choices?.[0]?.message?.content ?? "{}";
     try {
-      const parsed = JSON.parse(raw);
+      const parsed = JSON.parse(extractJson(raw));
+      if (typeof parsed.fixedCode !== "string" || !parsed.fixedCode.trim()) {
+        return fallback ?? { fixedCode: null, explanation: null, error: "AI could not produce a code fix. Try changing the code or run it again." };
+      }
       return {
-        fixedCode: typeof parsed.fixedCode === "string" ? parsed.fixedCode : null,
+        fixedCode: parsed.fixedCode,
         explanation: typeof parsed.explanation === "string" ? parsed.explanation : null,
         error: null as string | null,
       };
     } catch {
-      return { fixedCode: null, explanation: null, error: "AI returned invalid response." };
+      return fallback ?? { fixedCode: null, explanation: null, error: "AI returned invalid response. Try again in a moment." };
     }
   });
